@@ -5575,7 +5575,7 @@ class Located(ParseElementEnhance):
     """
 
     def parseImpl(self, instring, loc, do_actions=True) -> ParseImplReturnType:
-        start = loc
+        start = self.expr.preParse(instring, loc)
         loc, tokens = self.expr._parse(instring, start, do_actions, callPreParse=False)
         ret_tokens = ParseResults([start, tokens, loc])
         ret_tokens["locn_start"] = start
